@@ -1,3 +1,3 @@
-MAITENLIGA 2026
-
-Abre index.html en tu navegador. Esta V1 usa datos de demostración. Próximo paso: conectar Google Sheets y reemplazar fotos/datos.
+MAITENLIGA 2026 V2
+Conectada a Google Sheets / pestaña FECHAS.
+Sube index.html, style.css y app.js a la raíz del repositorio reemplazando los anteriores.
