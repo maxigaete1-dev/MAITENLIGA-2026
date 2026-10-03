@@ -30,7 +30,7 @@ table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:9px 3px;b
 <div class="app">
 <header>
 <div class="brand">⚽ MAITENLIGA <span>2026</span></div>
-<div id="sync" class="sync">✓ Web cargada · conectando planilla…</div>
+<div id="sync" class="sync">✓ Fecha 1 · conectando planilla…</div>
 <nav>
 <button class="active" data-page="inicio">INICIO</button>
 <button data-page="ranking">RANKING</button>
@@ -45,9 +45,9 @@ table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:9px 3px;b
 (function(){
 const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vRfaC8Z9GDnjyLsdMCw6Lr4bBx5jvgmDHJy-fBNao-HIvDSFPaiFJU4gPDgmo9pfXgYYJmVXJjVP-Gs/pub?gid=1006372394&single=true&output=csv";
 const roster=[
-["Maxi Yamal","Jugador"],["Lester Mbappé","Jugador"],["Vale Modrić","Jugador"],["Jose Bellingham","Jugador"],
-["Lucho Vinícius","Jugador"],["Chalo Haaland","Jugador"],["Jairen Courtois","Arquero"],["Juanjo Insigne","Jugador"],
-["Luxito Dibu","Arquero"],["Ale Neymar","Jugador"],["Walala Ramos","Defensa"],["Rafael Raphinha","Jugador"]];
+["Karim Benzemax","Jugador"],["Lester Mbappé","Jugador"],["Vale Modrić","Jugador"],["Jose Bellingham","Jugador"],
+["Luisao Dos Santos","Jugador"],["Chalo Haaland","Jugador"],["Jairen Courtois","Arquero"],["Juanjo Insigne","Jugador"],
+["Luxito Dibu","Arquero"],["Ale Neymar","Jugador"],["Walala Osorio","Defensa"],["Rafael Raphinha","Jugador"]];
 let rows=[];
 let stats=roster.map(x=>({name:x[0],pos:x[1],pj:0,g:0,a:0,w:0,mvp:0,y:0,r:0,gc:0,cs:0,pts:0}));
 let current="inicio";
@@ -69,7 +69,7 @@ function top(k){return [...stats].sort((a,b)=>b[k]-a[k]||a.name.localeCompare(b.
 function inicio(){
  if(!played().length)return '<div class="hero"><h1>♛ MAITENLIGA 2026</h1><div class="tag">La liga de los amigos</div></div>'+empty();
  const dates=[...new Set(played().map(x=>x.fecha))], last=dates[dates.length-1], lr=played().filter(x=>x.fecha===last), m=lr.find(x=>yes(x.mvp));
- return `<div class="hero"><h1>♛ MAITENLIGA 2026</h1><div class="tag">La liga de los amigos</div></div><h2>ÚLTIMA FECHA</h2><div class="card"><div class="tag">Fecha ${last}</div><h2>${lr.length} jugadores participaron</h2></div>${m?`<div class="card"><div class="yellow">⭐ MVP DE LA FECHA</div><h2>${m.jugador}</h2><div class="stats"><div><b>${n(m.goles)}</b><small>Goles</small></div><div><b>${n(m.asist)}</b><small>Asist.</small></div><div><b>⭐</b><small>MVP</small></div><div><b>${yes(m.victoria)?"🏆":"—"}</b><small>Victoria</small></div><div><b>${n(m.amarillas)}</b><small>🟨</small></div></div></div>`:""}`
+ return `<div class="hero"><h1>♛ MAITENLIGA 2026</h1><div class="tag">La liga de los amigos</div></div><h2>ÚLTIMA FECHA</h2><div class="card"><div class="tag">Fecha ${last}</div><h2>${lr.length} jugadores participaron</h2></div>${m?`<div class="card"><div class="yellow">⭐ MVP DE LA FECHA</div><h2>${m.jugador}</h2><div class="stats"><div><b>${n(m.goles)}</b><small>Goles</small></div><div><b>${n(m.asist)}</b><small>Asist.</small></div><div><b>⭐</b><small>MVP</small></div><div><b>${yes(m.victoria)?"🏆":"—"}</b><small>Victoria</small></div><div><b>${n(m.amarillas)}</b><small>🟨</small></div></div></div>`:""}<h2>PREMIOS DE LA FECHA</h2><div class="grid"><div class="card award">⭐ MVP<b>Walala Osorio</b></div><div class="card award">💪 Pulmón<b>Chalo Haaland</b></div><div class="card award">🪓 Leñador<b>Karim Benzemax</b></div><div class="card award">🪵 Tronco<b>Lester Mbappé</b></div><div class="card award">🧤 Atajada<b>Jairen Courtois</b></div></div>`
 }
 function ranking(){
  const tr=stats.map((p,i)=>`<tr><td>${["🥇","🥈","🥉"][i]||i+1}</td><td>${p.name}</td><td>${p.pj}</td><td>${p.g}</td><td>${p.a}</td><td>${p.mvp}</td><td><b>${p.pts}</b></td></tr>`).join("");
